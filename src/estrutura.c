@@ -73,3 +73,28 @@ void distribuir(Baralho *baralho, Mao *jogador, Mao *dealer) {
     jogador->cartas[jogador->total++] = comprarCarta(baralho);
     dealer->cartas[dealer->total++] = comprarCarta(baralho);
 }
+
+
+int contarPontos(Mao *mao){
+    int soma = 0, ases = 0;
+
+    for(int i=0; i < mao->total; i++){
+        if(mao->cartas[i].valorTexto == 'A'){
+            ases++;
+        }
+        else{
+            soma += mao->cartas[i].valor;
+        }
+    }
+
+    while(soma + (ases*11) > 21 && ases > 0){
+        soma += 1;
+        ases--;
+    }
+
+    /** talvez tenha um erro no caso de o jogador/dealer ter um às valendo 11 
+     * e outra carta (ex.:8) e comprar uma nova carta e ela vir às novamente.
+     * Verificar depois
+     */
+    soma += ases * 11;
+}
