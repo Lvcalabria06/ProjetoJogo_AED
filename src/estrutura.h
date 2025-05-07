@@ -8,14 +8,14 @@
 typedef struct Carta {
     char *naipe;
     char *valorTexto;
-    int valor; // para contagem no blackjack
+    int valor; // para contagem Node blackjack
 } Carta;
 
-typedef struct No {
+typedef struct Node {
     Carta carta;
-    struct No *prox;
-    struct No *ant;
-} No;
+    struct Node *next;
+    struct Node *prev;
+} Node;
 
 typedef struct {
     Carta cartas[12];
@@ -24,7 +24,7 @@ typedef struct {
 } Mao;
 
 typedef struct {
-    No *inicio;
+    Node *head;
     int tamanho;
 } Baralho;
 
